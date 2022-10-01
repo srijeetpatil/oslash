@@ -23,15 +23,18 @@ const Share = ({
   };
 
   return (
-    <>
+    <div data-testid="share-screen">
       <Header />
       <div className="border-y border-gray-200">
-        <div className="grid grid-cols-12 items-center rounded-md my-4 mx-2 hover:border-indigo-500 border border-gray-200">
+        <div
+          className="grid grid-cols-12 items-center rounded-md my-4 mx-2 hover:border-indigo-500 border border-gray-200"
+          onClick={() => setPopupScreen(2)}
+          data-testid="invite-input"
+        >
           <input
             type="text"
             placeholder="People, emails, groups"
             className="col-span-10 px-2 py-2 rounded-tl-md rounded-bl-md outline-none cursor-pointer"
-            onClick={() => setPopupScreen(2)}
           ></input>
           <button className="col-span-2 px-2 py-2 border-l border-gray-200 rounded-tr-md rounded-br-md bg-secondary">
             Invite
@@ -39,7 +42,7 @@ const Share = ({
         </div>
         {invitedContacts.map((contact, index) => {
           return (
-            <div className="flex items-center my-2 mx-2">
+            <div className="flex items-center my-2 mx-2" key={contact.name}>
               {contact.image && (
                 <img
                   src={contact.image}
@@ -79,6 +82,7 @@ const Share = ({
                       <MenuItem
                         minH="30px"
                         onClick={() => setAccess(accessLevel, index)}
+                        key={accessLevel}
                       >
                         {accessLevel}
                       </MenuItem>
@@ -91,7 +95,7 @@ const Share = ({
         })}
       </div>
       <Footer />
-    </>
+    </div>
   );
 };
 

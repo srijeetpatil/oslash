@@ -90,7 +90,11 @@ const SelectContacts = ({
   };
 
   return (
-    <div onKeyDown={keyboardActions} className="outline-none">
+    <div
+      onKeyDown={keyboardActions}
+      className="outline-none"
+      data-testid="select-contacts"
+    >
       <div className="flex items-center px-4 py-2.5 justify-between bg-dark">
         <div className="flex flex-wrap grow w-[60%]">
           {selectedContacts.map((contact, index) => {
@@ -114,6 +118,7 @@ const SelectContacts = ({
             );
           })}
           <input
+            data-testid="search-contacts"
             id="SearchContacts"
             type="text"
             className="text-light bg-transparent outline-none text-sm w-full"
@@ -146,7 +151,11 @@ const SelectContacts = ({
           </MenuButton>
           <MenuList className="text-sm">
             {accessLevels.map((accessLevel) => (
-              <MenuItem minH="30px" onClick={() => setAccess(accessLevel)}>
+              <MenuItem
+                minH="30px"
+                onClick={() => setAccess(accessLevel)}
+                key={accessLevel}
+              >
                 {accessLevel}
               </MenuItem>
             ))}
@@ -184,7 +193,7 @@ const SelectContacts = ({
       >
         {searchSuggestions.map((suggestion, index) => {
           return (
-            <>
+            <div key={suggestion.name}>
               {index === groupsStartIndex ? (
                 <div className="my-2">
                   <span className="text-label font-semibold">
@@ -227,7 +236,7 @@ const SelectContacts = ({
                   {suggestion.name}
                 </span>
               </div>
-            </>
+            </div>
           );
         })}
       </div>

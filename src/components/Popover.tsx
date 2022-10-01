@@ -26,6 +26,7 @@ const Popup = () => {
     >
       <PopoverTrigger>
         <button
+          data-testid="share-button"
           className="text-white bg-primary py-2.5 px-5 rounded-md flex items-center"
           onClick={() => {
             if (popupScreen === 0) setPopupScreen(1);
