@@ -1,13 +1,19 @@
 import { memo, useState } from "react";
 import { Popover, PopoverTrigger, PopoverContent } from "@chakra-ui/react";
 import Share from "./PopoverScreens/Share";
-import SelectPersonOrGroup from "./PopoverScreens/SelectPersonOrGroup";
+import SelectContacts from "./PopoverScreens/SelectContacts";
 
 const Popup = () => {
-  const [popupScreen, setPopupScreen] = useState<number>(1);
+  const [popupScreen, setPopupScreen] = useState<number>(0);
   const [invitedContacts, setInvitedContacts] = useState<
     Array<{ name: string; image?: string; access: string }>
-  >([]);
+  >([
+    {
+      name: "Everyone at OSlash",
+      image: "/assets/oslash-logo.png",
+      access: "No access",
+    },
+  ]);
 
   return (
     <Popover
@@ -15,10 +21,17 @@ const Popup = () => {
         maxWidth: "unset",
         width: "unset",
       }}
-      onClose={() => setPopupScreen(1)}
+      isOpen={popupScreen === 1 || popupScreen === 2}
+      onClose={() => setPopupScreen(0)}
     >
       <PopoverTrigger>
-        <button className="text-white bg-primary py-2.5 px-5 rounded-md flex items-center">
+        <button
+          className="text-white bg-primary py-2.5 px-5 rounded-md flex items-center"
+          onClick={() => {
+            if (popupScreen === 0) setPopupScreen(1);
+            else setPopupScreen(0);
+          }}
+        >
           <span>Share</span>
           <img
             src={"/assets/share.svg"}
@@ -36,7 +49,7 @@ const Popup = () => {
             />
           )}
           {popupScreen === 2 && (
-            <SelectPersonOrGroup
+            <SelectContacts
               invitedContacts={invitedContacts}
               setInvitedContacts={setInvitedContacts}
               setPopupScreen={setPopupScreen}
