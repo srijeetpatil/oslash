@@ -1,10 +1,10 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import Popover from "../components/Popover";
+import Share from "../components/Share";
 
 // Checks if the select contacts screen is opened if
 // the user clicks on invite input field
 test("Opens new window to search people or groups", () => {
-  render(<Popover />);
+  render(<Share />);
 
   // Click on share
   const shareButton = screen.getByTestId("share-button");
@@ -15,7 +15,7 @@ test("Opens new window to search people or groups", () => {
   fireEvent.click(InviteInput);
 
   const SelectContacts = screen.getByTestId("select-contacts");
- 
+
   // See if the select contacts screen shows up.
   expect(SelectContacts).toBeInTheDocument();
 });

@@ -1,16 +1,10 @@
 import { render, screen, within } from "@testing-library/react";
-import SelectContacts from "../components/PopoverScreens/SelectContacts";
+import SelectContacts from "../components/SelectContacts";
 import userEvent from "@testing-library/user-event";
 
 test("Renders a list of users with matching text", () => {
   // Sending in dummy data/functions
-  render(
-    <SelectContacts
-      invitedContacts={[]}
-      setInvitedContacts={() => {}}
-      setPopupScreen={() => {}}
-    />
-  );
+  render(<SelectContacts />);
 
   // Search input bar
   const SearchInput = screen.getByTestId("search-contacts");
