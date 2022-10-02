@@ -52,6 +52,7 @@ const Search = ({
             <div
               className="flex items-center text-xs px-2 py-1 bg-pill rounded mr-1 my-1"
               key={id}
+              data-testid={name.toLowerCase().split(" ").join("-") + "-pill"}
             >
               {name}
               <img
@@ -84,7 +85,10 @@ const Search = ({
       </div>
       <Menu placement="bottom">
         <MenuButton>
-          <div className="flex items-center text-light cursor-pointer">
+          <div
+            className="flex items-center text-light cursor-pointer"
+            data-testid="select-multiple-access"
+          >
             <span
               className={`text-xs ${
                 access === "No access" ? "text-red-600" : "text-light"
@@ -104,6 +108,7 @@ const Search = ({
               minH="30px"
               onClick={() => setAccess(accessLevel)}
               key={accessLevel}
+              data-testid={accessLevel}
             >
               {accessLevel}
             </MenuItem>
@@ -124,6 +129,7 @@ const Search = ({
             if (ShareScreen) ShareScreen.focus();
           }
         }}
+        data-testid={"invite-button"}
       >
         Invite
       </button>

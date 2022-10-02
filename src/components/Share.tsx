@@ -82,6 +82,7 @@ const Share = () => {
                     <div
                       className="flex items-center my-2 mx-2"
                       key={contact.id}
+                      data-testid={contact.name + " Invited"}
                     >
                       {contact.image && (
                         <img

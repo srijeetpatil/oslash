@@ -91,6 +91,7 @@ const SelectContacts = () => {
                 }}
                 onMouseEnter={() => setActiveContact(index)}
                 key={suggestion.id}
+                data-testid={"search-suggestion"}
               >
                 {suggestion.image ? (
                   <img

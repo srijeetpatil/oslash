@@ -1,21 +1,25 @@
 import { fireEvent, render, screen } from "@testing-library/react";
+import SelectContacts from "../components/SelectContacts";
 import Share from "../components/Share";
+import { AppState } from "../context/AppState";
 
-// Checks if the select contacts screen is opened if
-// the user clicks on invite input field
-test("Opens new window to search people or groups", () => {
-  render(<Share />);
+// To test whether the select contacts modal opens upon clicking the invite input
+test("Upon clicking the invite button the select contacts modal should open", () => {
+  render(
+    <AppState>
+      <Share />
+      <SelectContacts />
+    </AppState>
+  );
 
-  // Click on share
-  const shareButton = screen.getByTestId("share-button");
-  fireEvent.click(shareButton);
+  const inviteInput = screen.getByTestId("invite-input");
 
-  // Click on invite
-  const InviteInput = screen.getByTestId("invite-input");
-  fireEvent.click(InviteInput);
+  // Click on the invite input
+  fireEvent.click(inviteInput);
 
-  const SelectContacts = screen.getByTestId("select-contacts");
+  const searchBar = screen.getByPlaceholderText(
+    /Search emails, names or groups/i
+  );
 
-  // See if the select contacts screen shows up.
-  expect(SelectContacts).toBeInTheDocument();
+  expect(searchBar).toBeInTheDocument();
 });
