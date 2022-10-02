@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Notion share widget
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a notion share widget that allows users to share a link with one or more users and groups. It is a React component that uses tailwind css, ChakraUI and Context API.
 
 ## Available Scripts
 
