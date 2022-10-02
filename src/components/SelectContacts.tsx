@@ -1,14 +1,26 @@
-import { memo, useEffect, useState } from "react";
+import { memo, useState } from "react";
 import SearchBar from "./SelectContacts/SearchBar";
 import { users, groups } from "../utilities/Defaults";
 
 const SelectContacts = () => {
   const [selectedContacts, setSelectedContacts] = useState<
-    Array<{ name: string; image?: string; id: string }>
+    Array<{
+      name: string;
+      image?: string;
+      id: string;
+      email?: string;
+      members?: number;
+    }>
   >([]);
   const [activeContact, setActiveContact] = useState<number>(-1);
   const [searchSuggestions, setSearchSuggestions] = useState<
-    Array<{ name: string; image?: string; id: string }>
+    Array<{
+      name: string;
+      image?: string;
+      id: string;
+      email?: string;
+      members?: number;
+    }>
   >([...users, ...groups]);
 
   const [groupsStartIndex, setGroupsStartIndex] = useState<number>(
@@ -48,7 +60,7 @@ const SelectContacts = () => {
   return (
     <div
       onKeyDown={keyboardActions}
-      className="w-[35vw] border border-gray-200 rounded-lg shadow-lg outline-none"
+      className="w-full lg:w-[35vw] border border-gray-200 rounded-lg shadow-lg outline-none"
       data-testid="select-contacts"
     >
       <SearchBar

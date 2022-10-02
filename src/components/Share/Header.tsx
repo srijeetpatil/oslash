@@ -12,7 +12,7 @@ const Header = () => {
         </span>
       </div>
       <div className="ml-auto">
-        <Switch size="md" />
+        <Switch size="md" colorScheme={"gray"} />
       </div>
     </div>
   );

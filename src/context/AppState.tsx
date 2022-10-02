@@ -17,6 +17,8 @@ export interface stateProps {
       image?: string;
       id: string;
       access: string;
+      email?: string;
+      members?: number;
     }>;
   };
 }
@@ -35,6 +37,7 @@ export function AppState({ children }: { children: React.ReactNode }) {
           image: "/assets/oslash-logo.png",
           access: "No access",
           id: "Everyone",
+          members: 25,
         },
       ],
     },
@@ -60,13 +63,21 @@ export function AppState({ children }: { children: React.ReactNode }) {
 
   // Used to set all the contacts that will be sent an invite/given some access
   const setInvitedContacts = (
-    selectedContacts: Array<{ name: string; image?: string; id: string }>,
+    selectedContacts: Array<{
+      name: string;
+      image?: string;
+      id: string;
+      email?: string;
+      members?: number;
+    }>,
     access: string
   ) => {
     let newContactsArray: Array<{
       name: string;
       image?: string;
       access: string;
+      email?: string;
+      members?: number;
     }> = [];
     let newUIDArray: Array<string> = [];
 
@@ -80,6 +91,8 @@ export function AppState({ children }: { children: React.ReactNode }) {
           name: contact.name,
           image: contact.image,
           access: access,
+          ...(contact.email && { email: contact.email }),
+          ...(contact.members && { members: contact.members }),
         });
       }
     });
@@ -96,6 +109,8 @@ export function AppState({ children }: { children: React.ReactNode }) {
       image?: string;
       id: string;
       access: string;
+      members?: number;
+      email?: string;
     }> = state.invitedContacts.contacts;
     newContactsArray[index].access = access;
 

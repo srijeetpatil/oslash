@@ -13,14 +13,20 @@ function App() {
 
   return (
     <div className="App container mx-auto my-6">
+      {/* Contains the main Share button and opens a popover 
+      (which is the first screen of the widget) upon clicking it */}
+      <div className="flex justify-center mt-16">
+        <Share />
+      </div>
+      {/* Shows up when a user clicks on invite input field for them
+       to choose what all users and groups to select */}
       <Modal
         finalFocusRef={finalRef}
         isOpen={selectContactsModalOpen}
         onClose={() => {
-          let ShareScreen: HTMLElement | null = document.getElementById(
-            "share-screen"
-          ) as HTMLElement;
-          if (ShareScreen) ShareScreen.focus();
+          let shareScreen: HTMLElement | null =
+            document.getElementById("share-screen");
+          if (shareScreen) shareScreen.focus();
 
           setSelectContactsModalState(false);
         }}
@@ -29,9 +35,6 @@ function App() {
           <SelectContacts />
         </ModalContent>
       </Modal>
-      <div className="flex justify-center mt-16">
-        <Share />
-      </div>
     </div>
   );
 }

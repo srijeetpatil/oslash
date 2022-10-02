@@ -5,6 +5,7 @@ import Header from "./Share/Header";
 import Footer from "./Share/Footer";
 import { accessLevels } from "../utilities/Defaults";
 import { useAppContext } from "../context/AppState";
+import InviteButton from "./Share/InviteButton";
 
 const Share = () => {
   const {
@@ -50,24 +51,13 @@ const Share = () => {
         </button>
       </PopoverTrigger>
       <PopoverContent>
-        <div className="w-[35vw] border border-gray-200 rounded-lg shadow-lg outline-none">
-          <div data-testid="share-screen" id="share-screen">
+        <div className="w-full lg:w-[35vw] border border-gray-200 rounded-lg shadow-lg outline-none">
+          <div data-testid="share-screen">
             <Header />
-            <div className="border-y border-gray-200">
-              <div
-                className="grid grid-cols-12 items-center rounded-md my-4 mx-2 hover:border-indigo-500 border border-gray-200"
-                onClick={() => setSelectContactsModalState(true)}
-                data-testid="invite-input"
-              >
-                <input
-                  type="text"
-                  placeholder="People, emails, groups"
-                  className="col-span-10 px-2 py-2 rounded-tl-md rounded-bl-md outline-none cursor-pointer"
-                ></input>
-                <button className="col-span-2 px-2 py-2 border-l border-gray-200 rounded-tr-md rounded-br-md bg-secondary">
-                  Invite
-                </button>
-              </div>
+            <div className="border-y border-gray-200" id="share-screen">
+              <InviteButton
+                setSelectContactsModalState={setSelectContactsModalState}
+              />
               {invitedContacts?.contacts.map(
                 (
                   contact: {
@@ -75,6 +65,8 @@ const Share = () => {
                     image?: string;
                     id: string;
                     access: string;
+                    members?: number;
+                    email?: string;
                   },
                   index: number
                 ) => {
@@ -100,7 +92,9 @@ const Share = () => {
                           {contact.name}
                         </span>
                         <span className="text-sm text-light">
-                          25 workspace members
+                          {contact.email
+                            ? contact.email
+                            : contact.members + " workspace members"}
                         </span>
                       </div>
                       <div className="ml-auto">

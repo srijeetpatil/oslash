@@ -9,7 +9,13 @@ const Search = ({
   setGroupsStartIndex,
   setSearchSuggestions,
 }: {
-  selectedContacts: Array<{ name: string; image?: string; id: string }>;
+  selectedContacts: Array<{
+    name: string;
+    image?: string;
+    id: string;
+    email?: string;
+    members?: number;
+  }>;
   setSelectedContacts: Function;
   setGroupsStartIndex: Function;
   setSearchSuggestions: Function;
@@ -123,10 +129,9 @@ const Search = ({
 
             setSelectContactsModalState(false);
 
-            let ShareScreen: HTMLElement | null = document.getElementById(
-              "share-screen"
-            ) as HTMLElement;
-            if (ShareScreen) ShareScreen.focus();
+            let shareScreen: HTMLElement | null =
+              document.getElementById("share-screen");
+            if (shareScreen) shareScreen.focus();
           }
         }}
         data-testid={"invite-button"}
